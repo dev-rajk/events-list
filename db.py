@@ -28,28 +28,30 @@ def insert_event(event):
     conn.close()
 
 
-def init_db():
-    conn = sqlite3.connect('events.db')
-    c = conn.cursor()
-    c.execute('''
-        CREATE TABLE IF NOT EXISTS events (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            quiz_name TEXT,
-            date TEXT,
-            time TEXT,
-            category TEXT,
-            place TEXT,
-            location TEXT,
-            organizer TEXT,
-            genre TEXT,
-            quiz_master TEXT,
-            prize TEXT,
-            contact_number TEXT,
-            status TEXT
-        )
-    ''')
+# Function to create events table if it doesn't exist
+def create_table():
+    conn = connect_db()
+    query = '''
+    CREATE TABLE IF NOT EXISTS events (
+        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+        QuizName TEXT,
+        Date TEXT,
+        Time TEXT,
+        Category TEXT,
+        Place TEXT,
+        Location TEXT,
+        Organizer TEXT,
+        Genre TEXT,
+        QuizMaster TEXT,
+        Prize TEXT,
+        ContactNumber TEXT,
+        Status TEXT
+    );
+    '''
+    conn.execute(query)
     conn.commit()
     conn.close()
+
 
 def add_event(quiz_name, date, time, category, place, location, organizer, genre, quiz_master, prize, contact_number):
     conn = sqlite3.connect('events.db')
