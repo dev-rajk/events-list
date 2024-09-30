@@ -1,4 +1,32 @@
 import sqlite3
+import pandas as pd
+
+# Connect to the database (or create it if it doesn't exist)
+def connect_db():
+    conn = sqlite3.connect('events.db')
+    return conn
+
+# Example function to fetch all events
+def get_events(status):
+    conn = connect_db()
+    query = "SELECT * FROM events WHERE Status = ?"
+    result = conn.execute(query, (status,))
+    events = result.fetchall()
+    conn.close()
+    return events
+
+# Example function to insert an event
+def insert_event(event):
+    conn = connect_db()
+    query = '''
+    INSERT INTO events 
+    (QuizName, Date, Time, Category, Place, Location, Organizer, Genre, QuizMaster, Prize, ContactNumber, Status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    '''
+    conn.execute(query, event)
+    conn.commit()
+    conn.close()
+
 
 def init_db():
     conn = sqlite3.connect('events.db')
