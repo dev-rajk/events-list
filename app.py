@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import sqlite3
-from db import get_events, approve_event, delete_event, edit_event, export_events
+from db import get_events, approve_event, delete_event, edit_event, export_events, create_table
 
 # Create the table when the app starts
 create_table()
