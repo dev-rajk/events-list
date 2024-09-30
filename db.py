@@ -47,3 +47,30 @@ def approve_event(event_id):
     c.execute('UPDATE events SET status="Approved" WHERE id=?', (event_id,))
     conn.commit()
     conn.close()
+
+# Edit an event
+def edit_event(event_id, quiz_name, date, time, prize):
+    conn = connect_db()
+    query = """
+        UPDATE events 
+        SET QuizName = ?, Date = ?, Time = ?, Prize = ?
+        WHERE ID = ?
+    """
+    conn.execute(query, (quiz_name, date, time, prize, event_id))
+    conn.commit()
+    conn.close()
+
+# Delete an event
+def delete_event(event_id):
+    conn = connect_db()
+    query = "DELETE FROM events WHERE ID = ?"
+    conn.execute(query, (event_id,))
+    conn.commit()
+    conn.close()
+
+# Export events to a CSV file
+def export_events():
+    conn = connect_db()
+    df = pd.read_sql_query("SELECT * FROM events", conn)
+    df.to_csv("exported_events.csv", index=False)
+    conn.close()
