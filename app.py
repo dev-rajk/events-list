@@ -3,6 +3,9 @@ import pandas as pd
 import sqlite3
 from db import get_events, approve_event, delete_event, edit_event, export_events
 
+# Create the table when the app starts
+create_table()
+
 # Function to sort events by date (closest upcoming first)
 def get_sorted_events():
     approved_events = get_events("Approved")
