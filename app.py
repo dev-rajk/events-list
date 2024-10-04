@@ -3,10 +3,12 @@ from db import init_db, add_event, get_events, approve_event
 import pandas as pd
 import json
 
+st.set_page_config(
+    page_title="Assam Quiz Calendar",
 # Initialize the database
 init_db()
 
-st.title("Community Quiz Event System")
+st.title("Assam Quiz Calendar")
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
