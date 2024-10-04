@@ -150,7 +150,7 @@ if choice == "View Events":
                 "start": event[2],  # Date
                 "extendedProps": {  # Additional event details
                     "time": event[3], 
-                    "Category": event[4],  # Venue (renamed from place)
+                    "category": event[4],  # Venue (renamed from place)
                     "venue": event[5],
                     "location":   event[6], # Location
                     "organizer": event[7],                    
