@@ -46,3 +46,22 @@ def approve_event(event_id):
     c.execute('UPDATE events SET status="Approved" WHERE id=?', (event_id,))
     conn.commit()
     conn.close()
+
+def update_event(event_id, quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number):
+    conn = sqlite3.connect('events.db')
+    c = conn.cursor()
+    c.execute('''
+        UPDATE events 
+        SET quiz_name=?, date=?, time=?, category=?, venue=?, location=?, organizer=?, genre=?, quiz_master=?, prize=?, contact_number=?
+        WHERE id=?
+    ''', (quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number, event_id))
+    conn.commit()
+    conn.close()
+
+def delete_event(event_id):
+    conn = sqlite3.connect('events.db')
+    c = conn.cursor()
+    c.execute('DELETE FROM events WHERE id=?', (event_id,))
+    conn.commit()
+    conn.close()
+
