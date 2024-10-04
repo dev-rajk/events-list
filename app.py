@@ -4,7 +4,7 @@ import pandas as pd
 import json
 
 st.set_page_config(
-    page_title="Assam Quiz Calendar",
+    page_title="Assam Quiz Calendar")
 # Initialize the database
 init_db()
 
