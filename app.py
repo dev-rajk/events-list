@@ -4,11 +4,20 @@ import pandas as pd
 import json
 
 st.set_page_config(
-    page_title="Assam Quiz Calendar")
+    page_title="Assam Quiz Calendar",
+    layout="wide", 
+    page_icon=":material/lightbulb:",
+    menu_items={
+        'about': '''**This was made with love in Assam**        
+        The calendar attempts to help organisers and participants know more about the quizzing events across the state. 
+        For feature requests or bug reports contact @dev_rajk on Instagram
+        '''
+    )
 # Initialize the database
 init_db()
 
 st.title("Assam Quiz Calendar")
+
 BASIC_ADMIN_PASSWORD = st.secrets.user.pass1
 FULL_ADMIN_PASSWORD = st.secrets.user.pass2
 # Sidebar navigation
