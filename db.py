@@ -9,7 +9,7 @@ def init_db():
             date TEXT,
             time TEXT,
             category TEXT,
-            place TEXT,
+            venue TEXT,  -- Changed from place to venue
             location TEXT,
             organizer TEXT,
             genre TEXT,
@@ -21,15 +21,17 @@ def init_db():
     ''')
     conn.commit()
     conn.close()
-def add_event(quiz_name, date, time, category, place, location, organizer, genre, quiz_master, prize, contact_number):
+    
+def add_event(quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number):
     conn = sqlite3.connect('events.db')
     c = conn.cursor()
     c.execute('''
-        INSERT INTO events (quiz_name, date, time, category, place, location, organizer, genre, quiz_master, prize, contact_number, status)
+        INSERT INTO events (quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number, status)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending')
-    ''', (quiz_name, date, time, category, place, location, organizer, genre, quiz_master, prize, contact_number))
+    ''', (quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number))
     conn.commit()
     conn.close()
+
 def get_events(status):
     conn = sqlite3.connect('events.db')
     c = conn.cursor()
@@ -37,6 +39,7 @@ def get_events(status):
     events = c.fetchall()
     conn.close()
     return events
+    
 def approve_event(event_id):
     conn = sqlite3.connect('events.db')
     c = conn.cursor()
