@@ -150,13 +150,14 @@ if choice == "View Events":
                 "start": event[2],  # Date
                 "extendedProps": {  # Additional event details
                     "time": event[3], 
-                    "venue": event[4],  # Venue (renamed from place)
-                    "location": event[5],  # Location
-                    "organizer": event[6],
-                    "genre": event[7],
-                    "quiz_master": event[8],  # Quiz Master
-                    "prize": event[9],
-                    "contact_number": event[10]  # Contact Number
+                    "Category": event[4],  # Venue (renamed from place)
+                    "venue": event[5],
+                    "location":   event[6], # Location
+                    "organizer": event[7],                    
+                    "genre": event[8],
+                    "quiz_master": event[9],  # Quiz Master
+                    "prize": event[10],
+                    "contact_number": event[11]  # Contact Number
                 }
             })
         
