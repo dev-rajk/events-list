@@ -190,88 +190,112 @@ elif choice == "Submit Event":
             add_event(quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number)
             st.success(f"Event '{quiz_name}' submitted successfully! Awaiting admin approval.")
 
-
+BASIC_ADMIN_PASSWORD = st.secrets.user.pass1
+FULL_ADMIN_PASSWORD = st.secrets.user.pass2
 # 3. Admin Panel for Approving, Editing, Deleting, and Exporting Events
 elif choice == "Admin Panel":
     st.subheader("Admin: Manage Events")
+    password = st.text_input("Enter Admin Password", type="password")
 
-    # Fetch events based on status
-    approved_events = get_events("Approved")
-    pending_events = get_events("Pending")
-
-    # Tab to switch between managing approved and pending events
-    tab1, tab2 = st.tabs(["Manage Approved Events", "Approve Pending Events"])
-
-    with tab1:  # Manage Approved Events Tab
-        st.write("Manage Approved Events")
+    if password == BASIC_ADMIN_PASSWORD:
+        pending_events = get_events("Pending")
         
-        if approved_events:
-            df = pd.DataFrame(approved_events, columns=[
-                "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
-                "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
-            ])
-
-            # Display approved events
-            st.dataframe(df.drop(columns=["Status"]))
-
-            # Select event for editing or deleting
-            selected_event_id = st.selectbox("Select an Event to Edit or Delete", df["ID"])
-            selected_event = df[df["ID"] == selected_event_id].iloc[0]  # Get selected event details
-
-            # Editing form with existing values pre-filled
-            with st.form(key='edit_event_form'):
-                quiz_name = st.text_input("Quiz Name", value=selected_event["Quiz Name"])
-                date = st.date_input("Date", value=pd.to_datetime(selected_event["Date"]))
-                time = st.text_input("Time", value=selected_event["Time"])
-                category = st.text_input("Category", value=selected_event["Category"])
-                venue = st.text_input("Venue", value=selected_event["Venue"])
-                location = st.text_input("Location", value=selected_event["Location"])
-                organizer = st.text_input("Organizer", value=selected_event["Organizer"])
-                genre = st.text_input("Genre", value=selected_event["Genre"])
-                quiz_master = st.text_input("Quiz Master", value=selected_event["Quiz Master"])
-                prize = st.text_input("Prize", value=selected_event["Prize"])
-                contact_number = st.text_input("Contact Number", value=selected_event["Contact Number"])
-
-                submit_button = st.form_submit_button(label='Update Event')
-                delete_button = st.form_submit_button(label='Delete Event')
-
-                if submit_button:
-                    # Update event in the database
-                    update_event(selected_event_id, quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number)
-                    st.success(f"Event ID {selected_event_id} updated successfully!")
-
-                if delete_button:
-                    # Delete event from the database
-                    delete_event(selected_event_id)
-                    st.success(f"Event ID {selected_event_id} deleted successfully!")
-
-            # Button to export approved events as a CSV file
-            if st.button('Export Approved Events as CSV'):
-                csv_data = df.to_csv(index=False).encode('utf-8')
-                st.download_button(
-                    label="Download CSV",
-                    data=csv_data,
-                    file_name='approved_events.csv',
-                    mime='text/csv',
-                )
-
-        else:
-            st.write("No approved events to manage.")
-
-    with tab2:  # Approve Pending Events Tab
-        st.write("Approve Pending Events")
-
         if pending_events:
-            df_pending = pd.DataFrame(pending_events, columns=[
-                "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
+            df = pd.DataFrame(pending_events, columns=[
+                "ID", "Quiz Name", "Date", "Time", "Category", "Place", "Location", "Organizer", 
                 "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
             ])
+            st.dataframe(df.drop(columns=["Status"]))
             
-            st.dataframe(df_pending.drop(columns=["Status"]))
-
-            selected_event_id_pending = st.selectbox("Select an Event to Approve", df_pending["ID"])
+            selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
             if st.button("Approve Event"):
-                approve_event(selected_event_id_pending)
-                st.success(f"Event ID {selected_event_id_pending} approved!")
+                approve_event(selected_event_id)
+                st.success(f"Event ID {selected_event_id} approved!")
         else:
             st.write("No pending events to approve.")
+    elif password == FULL_ADMIN_PASSWORD:
+        # Fetch events based on status
+        approved_events = get_events("Approved")
+        pending_events = get_events("Pending")
+    
+        # Tab to switch between managing approved and pending events
+        tab1, tab2 = st.tabs(["Manage Approved Events", "Approve Pending Events"])
+    
+        with tab1:  # Manage Approved Events Tab
+            st.write("Manage Approved Events")
+            
+            if approved_events:
+                df = pd.DataFrame(approved_events, columns=[
+                    "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
+                    "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
+                ])
+    
+                # Display approved events
+                st.dataframe(df.drop(columns=["Status"]))
+    
+                # Select event for editing or deleting
+                selected_event_id = st.selectbox("Select an Event to Edit or Delete", df["ID"])
+                selected_event = df[df["ID"] == selected_event_id].iloc[0]  # Get selected event details
+    
+                # Editing form with existing values pre-filled
+                with st.form(key='edit_event_form'):
+                    quiz_name = st.text_input("Quiz Name", value=selected_event["Quiz Name"])
+                    date = st.date_input("Date", value=pd.to_datetime(selected_event["Date"]))
+                    time = st.text_input("Time", value=selected_event["Time"])
+                    category = st.text_input("Category", value=selected_event["Category"])
+                    venue = st.text_input("Venue", value=selected_event["Venue"])
+                    location = st.text_input("Location", value=selected_event["Location"])
+                    organizer = st.text_input("Organizer", value=selected_event["Organizer"])
+                    genre = st.text_input("Genre", value=selected_event["Genre"])
+                    quiz_master = st.text_input("Quiz Master", value=selected_event["Quiz Master"])
+                    prize = st.text_input("Prize", value=selected_event["Prize"])
+                    contact_number = st.text_input("Contact Number", value=selected_event["Contact Number"])
+    
+                    submit_button = st.form_submit_button(label='Update Event')
+                    delete_button = st.form_submit_button(label='Delete Event')
+    
+                    if submit_button:
+                        # Update event in the database
+                        update_event(selected_event_id, quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number)
+                        st.success(f"Event ID {selected_event_id} updated successfully!")
+    
+                    if delete_button:
+                        # Delete event from the database
+                        delete_event(selected_event_id)
+                        st.success(f"Event ID {selected_event_id} deleted successfully!")
+    
+                # Button to export approved events as a CSV file
+                if st.button('Export Approved Events as CSV'):
+                    csv_data = df.to_csv(index=False).encode('utf-8')
+                    st.download_button(
+                        label="Download CSV",
+                        data=csv_data,
+                        file_name='approved_events.csv',
+                        mime='text/csv',
+                    )
+    
+            else:
+                st.write("No approved events to manage.")
+    
+        with tab2:  # Approve Pending Events Tab
+            st.write("Approve Pending Events")
+    
+            if pending_events:
+                df_pending = pd.DataFrame(pending_events, columns=[
+                    "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
+                    "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
+                ])
+                
+                st.dataframe(df_pending.drop(columns=["Status"]))
+    
+                selected_event_id_pending = st.selectbox("Select an Event to Approve", df_pending["ID"])
+                if st.button("Approve Event"):
+                    approve_event(selected_event_id_pending)
+                    st.success(f"Event ID {selected_event_id_pending} approved!")
+            else:
+                st.write("No pending events to approve.")
+    
+     
+    elif password:
+        st.error("Incorrect Admin Password")
+    
