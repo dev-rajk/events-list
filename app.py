@@ -1,5 +1,5 @@
 import streamlit as st
-from db import init_db, add_event, get_events, approve_event
+from db import init_db, add_event, get_events, approve_event, delete_event, update_event
 import pandas as pd
 import json
 
