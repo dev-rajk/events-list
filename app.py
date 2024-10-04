@@ -11,7 +11,7 @@ st.set_page_config(
         'about': '''**This was made with love in Assam**        
         The calendar attempts to help organisers and participants know more about the quizzing events across the state. 
         For feature requests or bug reports contact @dev_rajk on Instagram
-        '''
+        '''}
     )
 # Initialize the database
 init_db()
