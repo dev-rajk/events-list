@@ -15,7 +15,7 @@ choice = st.sidebar.selectbox("Choose an action", options)
 
 # FullCalendar HTML and JavaScript
 def fullcalendar(events):
-    events_json = json.dumps(events)
+    events_json = json.dumps(events)  # Convert events to JSON string
     calendar_code = f"""
     <!DOCTYPE html>
     <html>
@@ -23,14 +23,14 @@ def fullcalendar(events):
         <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
         <script>
-          document.addEventListener('DOMContentLoaded', function() {
+          document.addEventListener('DOMContentLoaded', function() {{
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {{
               initialView: 'dayGridMonth',
               events: {events_json}
             }});
             calendar.render();
-          });
+          }});
         </script>
     </head>
     <body>
