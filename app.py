@@ -9,7 +9,8 @@ st.set_page_config(
 init_db()
 
 st.title("Assam Quiz Calendar")
-
+BASIC_ADMIN_PASSWORD = st.secrets.user.pass1
+FULL_ADMIN_PASSWORD = st.secrets.user.pass2
 # Sidebar navigation
 st.sidebar.title("Navigation")
 options = ["View Events", "Submit Event", "Admin Panel"]
@@ -190,8 +191,7 @@ elif choice == "Submit Event":
             add_event(quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number)
             st.success(f"Event '{quiz_name}' submitted successfully! Awaiting admin approval.")
 
-BASIC_ADMIN_PASSWORD = st.secrets.user.pass1
-FULL_ADMIN_PASSWORD = st.secrets.user.pass2
+
 # 3. Admin Panel for Approving, Editing, Deleting, and Exporting Events
 elif choice == "Admin Panel":
     st.subheader("Admin: Manage Events")
