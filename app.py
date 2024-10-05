@@ -151,27 +151,32 @@ if choice == "View Events":
     approved_events = get_events("Approved")
     
     if approved_events:
-        # Prepare events for FullCalendar
-        events = []
-        for event in approved_events:
-            events.append({
-                "title": event[1],  # Quiz Name
-                "start": event[2],  # Date
-                "extendedProps": {  # Additional event details
-                    "time": event[3], 
-                    "category": event[4],  # Venue (renamed from place)
-                    "venue": event[5],
-                    "location":   event[6], # Location
-                    "organizer": event[7],                    
-                    "genre": event[8],
-                    "quiz_master": event[9],  # Quiz Master
-                    "prize": event[10],
-                    "contact_number": event[11]  # Contact Number
-                }
-            })
+         if not df.empty:
+            # Prepare events for FullCalendar
+            events = []
+            for event in approved_events:
+                events.append({
+                    "title": event[1],  # Quiz Name
+                    "start": event[2],  # Date
+                    "extendedProps": {  # Additional event details
+                        "time": event[3], 
+                        "category": event[4],  # Venue (renamed from place)
+                        "venue": event[5],
+                        "location":   event[6], # Location
+                        "organizer": event[7],                    
+                        "genre": event[8],
+                        "quiz_master": event[9],  # Quiz Master
+                        "prize": event[10],
+                        "contact_number": event[11]  # Contact Number
+                    }
+                })
+            
+            # Display FullCalendar with modal functionality
+            st.components.v1.html(fullcalendar(events), height=600)
         
-        # Display FullCalendar with modal functionality
-        st.components.v1.html(fullcalendar(events), height=600)
+        else:
+            st.write("No approved events to show.")
+        
     else:
         st.write("No approved events to show.")
 
