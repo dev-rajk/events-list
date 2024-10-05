@@ -151,7 +151,7 @@ if choice == "View Events":
     approved_events = get_events("Approved")
     
     if approved_events:
-         if not df.empty:
+        if not df.empty:
             # Prepare events for FullCalendar
             events = []
             for event in approved_events:
@@ -173,7 +173,7 @@ if choice == "View Events":
             
             # Display FullCalendar with modal functionality
             st.components.v1.html(fullcalendar(events), height=600)
-        
+            
         else:
             st.write("No approved events to show.")
         
