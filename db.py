@@ -1,6 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 import streamlit as st
+import pandas as pd
 
 # Initialize Firestore using secrets
 if not firebase_admin._apps:  # Check if the app is already initialized
@@ -47,7 +48,7 @@ def get_events(status):
         event_data = event.to_dict()
         event_data['id'] = event.id
         events_list.append(event_data)
-    return events_list
+    return pd.DataFrame(events_list)
 
 def approve_event(event_id):
     doc_ref = db.collection('events').document(event_id)
