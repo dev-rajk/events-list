@@ -209,16 +209,20 @@ elif choice == "Admin Panel":
         pending_events = get_events("Pending")
         
         if pending_events:
-            df = pd.DataFrame(pending_events, columns=[
-                "ID", "Quiz Name", "Date", "Time", "Category", "Place", "Location", "Organizer", 
-                "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
-            ])
-            st.dataframe(df.drop(columns=["Status"]))
-            
-            selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
-            if st.button("Approve Event"):
-                approve_event(selected_event_id)
-                st.success(f"Event ID {selected_event_id} approved!")
+            if not df.empty:
+                df = pd.DataFrame(pending_events, columns=[
+                    "ID", "Quiz Name", "Date", "Time", "Category", "Place", "Location", "Organizer", 
+                    "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
+                ])
+                st.dataframe(df.drop(columns=["Status"]))
+                
+                selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
+                if st.button("Approve Event"):
+                    approve_event(selected_event_id)
+                    st.success(f"Event ID {selected_event_id} approved!")
+
+            else:
+                st.write("No pending events to approve.")
         else:
             st.write("No pending events to approve.")
     elif password == FULL_ADMIN_PASSWORD:
