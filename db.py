@@ -43,12 +43,14 @@ def add_event(quiz_name, date, time, category, venue, location, organizer, genre
 def get_events(status):
     events_ref = db.collection('events').where('status', '==', status)
     events = events_ref.stream()
-    events_list = []
+    quizzes = []
     for event in events:
-        event_data = event.to_dict()
-        event_data['id'] = event.id
-        events_list.append(event_data)
-    return events_list
+            event_data = event.to_dict()
+            event_data['id'] = event.id
+            quizzes.append(event_data)
+            
+    return pd.DataFrame(quizzes).set_index('id')
+    
 
 def approve_event(event_id):
     doc_ref = db.collection('events').document(event_id)
