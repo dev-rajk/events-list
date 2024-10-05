@@ -46,10 +46,10 @@ def get_events(status):
     quizzes = []
     for event in events:
             event_data = event.to_dict()
-            event_data['event_id'] = event.id
+            event_data['id'] = event.id
             quizzes.append(event_data)
             
-    return pd.DataFrame(quizzes).set_index('event_id')
+    return pd.DataFrame(quizzes).set_index('id')
     
 
 def approve_event(event_id):
