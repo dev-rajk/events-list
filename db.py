@@ -40,7 +40,7 @@ def add_event(quiz_name, date, time, category, venue, location, organizer, genre
     })
 
 def get_events(status):
-    events_ref = db.collection('events').where('status', '==', status)
+    events_ref = db.collection('events').where(filter=('status', '==', status))
     events = events_ref.stream()
     events_list = []
     for event in events:
