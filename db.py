@@ -48,7 +48,7 @@ def get_events(status):
         event_data = event.to_dict()
         event_data['id'] = event.id
         events_list.append(event_data)
-    return pd.DataFrame(events_list)
+    return pevents_list
 
 def approve_event(event_id):
     doc_ref = db.collection('events').document(event_id)
