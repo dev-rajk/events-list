@@ -45,7 +45,7 @@ def get_events(status):
     events = events_ref.stream()
     events_list = []
     for event in events:
-        event_data = event
+        event_data = event.to_dict()
         event_data['id'] = event.id
         events_list.append(event_data)
     return pd.DataFrame(events_list)
