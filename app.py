@@ -150,16 +150,15 @@ if choice == "View Events":
     st.subheader("Upcoming Quizzes")
     approved_events = get_events("Approved")
     
-    if approved_events:
-        if not approved_events.empty:
-            # Prepare events for FullCalendar
-            events = []
-            for event in approved_events:
-                events.append({
-                    "title": event[1],  # Quiz Name
-                    "start": event[2],  # Date
-                    "extendedProps": {  # Additional event details
-                        "time": event[3], 
+    if not approved_events.empty:
+        # Prepare events for FullCalendar
+        events = []
+        for event in approved_events:
+            events.append({
+            "title": event[1],  # Quiz Name
+            "start": event[2],  # Date
+            "extendedProps": {  # Additional event details
+            "time": event[3], 
                         "category": event[4],  # Venue (renamed from place)
                         "venue": event[5],
                         "location":   event[6], # Location
@@ -172,11 +171,8 @@ if choice == "View Events":
                 })
             
             # Display FullCalendar with modal functionality
-            st.components.v1.html(fullcalendar(events), height=600)
+        st.components.v1.html(fullcalendar(events), height=600)
             
-        else:
-            st.write("No approved events to show.")
-        
     else:
         st.write("No approved events to show.")
 
@@ -213,21 +209,19 @@ elif choice == "Admin Panel":
     if password == BASIC_ADMIN_PASSWORD:
         pending_events = get_events("Pending")
         
-        if pending_events:
-            if not pending_events.empty:
-                df = pd.DataFrame(pending_events, columns=[
+        if not pending_events.empty:
+            df = pd.DataFrame(pending_events, columns=[
                     "ID", "Quiz Name", "Date", "Time", "Category", "Place", "Location", "Organizer", 
                     "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
                 ])
-                st.dataframe(df.drop(columns=["Status"]))
+            st.dataframe(df.drop(columns=["Status"]))
                 
-                selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
-                if st.button("Approve Event"):
-                    approve_event(selected_event_id)
-                    st.success(f"Event ID {selected_event_id} approved!")
+            selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
+            if st.button("Approve Event"):
+                approve_event(selected_event_id)
+                st.success(f"Event ID {selected_event_id} approved!")
 
-            else:
-                st.write("No pending events to approve.")
+           
         else:
             st.write("No pending events to approve.")
     elif password == FULL_ADMIN_PASSWORD:
@@ -241,7 +235,7 @@ elif choice == "Admin Panel":
         with tab1:  # Manage Approved Events Tab
             st.write("Manage Approved Events")
             
-            if approved_events:
+            if not approved_events.empty:
                 df = pd.DataFrame(approved_events, columns=[
                     "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
                     "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
@@ -297,7 +291,7 @@ elif choice == "Admin Panel":
         with tab2:  # Approve Pending Events Tab
             st.write("Approve Pending Events")
     
-            if pending_events:
+            if not pending_events.empty:
                 df_pending = pd.DataFrame(pending_events, columns=[
                     "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
                     "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
