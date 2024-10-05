@@ -49,7 +49,7 @@ def get_events(status):
             event_data['id'] = event.id
             quizzes.append(event_data)
             
-    return pd.DataFrame(quizzes).set_index('id')
+    return pd.DataFrame(quizzes)
     
 
 def approve_event(event_id):
