@@ -1,5 +1,5 @@
 import streamlit as st
-from db import init_db, add_event, get_events, approve_event, delete_event, update_event
+from db import add_event, get_events, approve_event, update_event, delete_event
 import pandas as pd
 import json
 
@@ -13,8 +13,7 @@ st.set_page_config(
         For feature requests or bug reports contact @dev_rajk on Instagram
         '''}
     )
-# Initialize the database
-init_db()
+
 
 st.title("Assam Quiz Calendar")
 
