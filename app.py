@@ -151,7 +151,7 @@ if choice == "View Events":
     approved_events = get_events("Approved")
     
     if approved_events:
-        if not df.empty:
+        if not approved_events.empty:
             # Prepare events for FullCalendar
             events = []
             for event in approved_events:
@@ -214,7 +214,7 @@ elif choice == "Admin Panel":
         pending_events = get_events("Pending")
         
         if pending_events:
-            if not df.empty:
+            if not pending_events.empty:
                 df = pd.DataFrame(pending_events, columns=[
                     "ID", "Quiz Name", "Date", "Time", "Category", "Place", "Location", "Organizer", 
                     "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
