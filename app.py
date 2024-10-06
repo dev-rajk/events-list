@@ -24,7 +24,6 @@ st.sidebar.title("Navigation")
 options = ["View Events", "Submit Event", "Admin Panel"]
 choice = st.sidebar.selectbox("Choose an action", options)
 
-# FullCalendar HTML and JavaScript with custom modal including all event details
 def fullcalendar(events):
     events_json = json.dumps(events)  # Convert events to JSON string
     calendar_code = f"""
@@ -34,38 +33,119 @@ def fullcalendar(events):
         <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
         <style>
-            /* The Modal (background) */
+            /* Default light theme */
+            body {{
+                background-color: #fff;
+                color: #000;
+            }}
+            #calendar {{
+                background-color: #fff;
+                border: 1px solid #ccc;
+            }}
+            .fc-header-toolbar {{
+                background-color: #f8f9fa;
+                border-bottom: 1px solid #dee2e6;
+            }}
+            .fc-button {{
+                background-color: #007bff;
+                color: white;
+                border: none;
+                padding: 5px 10px;
+            }}
+            .fc-button:hover {{
+                background-color: #0056b3;
+            }}
+            .fc-button.fc-button-primary {{
+                background-color: #6c757d;
+            }}
+            .fc-button-primary:hover {{
+                background-color: #5a6268;
+            }}
+            .fc-daygrid-day {{
+                background-color: #fff;
+                border: 1px solid #dee2e6;
+                color: #000;
+            }}
+            .fc-day-today {{
+                background-color: #e9ecef !important;
+                border-color: #adb5bd;
+            }}
+            .fc-col-header-cell {{
+                background-color: #f1f3f5;
+                color: #212529;
+                border: 1px solid #dee2e6;
+            }}
+
+            /* Dark theme */
+            @media (prefers-color-scheme: dark) {{
+                body {{
+                    background-color: #1c1c1c;
+                    color: white;
+                }}
+                #calendar {{
+                    background-color: #1c1c1c;
+                    border: 1px solid #333;
+                }}
+                .fc-header-toolbar {{
+                    background-color: #2c2c2c;
+                    border-bottom: 1px solid #444;
+                }}
+                .fc-button {{
+                    background-color: #d9534f;
+                    color: white;
+                    border: none;
+                    padding: 5px 10px;
+                }}
+                .fc-button:hover {{
+                    background-color: #c9302c;
+                }}
+                .fc-button.fc-button-primary {{
+                    background-color: #292b2c;
+                }}
+                .fc-button-primary:hover {{
+                    background-color: #1c1d1f;
+                }}
+                .fc-daygrid-day {{
+                    background-color: #2c2c2c;
+                    border: 1px solid #333;
+                    color: white;
+                }}
+                .fc-day-today {{
+                    background-color: #454545 !important;
+                    border-color: #292929;
+                }}
+                .fc-col-header-cell {{
+                    background-color: #333;
+                    color: white;
+                    border: 1px solid #333;
+                }}
+            }}
+
             .modal {{
-                display: none; /* Hidden by default */
-                position: fixed; /* Stay in place */
-                z-index: 1; /* Sit on top */
+                display: none;
+                position: fixed;
+                z-index: 1;
                 left: 0;
                 top: 0;
-                width: 100%; /* Full width */
-                height: 100%; /* Full height */
-                overflow: auto; /* Enable scroll if needed */
-                background-color: rgb(0,0,0); /* Fallback color */
-                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgba(0,0,0,0.4);
                 padding-top: 60px;
             }}
-
-            /* Modal Content */
             .modal-content {{
                 background-color: #fefefe;
-                margin: 5% auto; /* 15% from the top and centered */
+                margin: 5% auto;
                 padding: 20px;
                 border: 1px solid #888;
-                width: 80%; /* Could be more or less, depending on screen size */
+                width: 80%;
             }}
-
-            /* The Close Button */
             .close {{
                 color: #aaa;
                 float: right;
                 font-size: 28px;
                 font-weight: bold;
             }}
-
             .close:hover,
             .close:focus {{
                 color: black;
@@ -79,12 +159,10 @@ def fullcalendar(events):
             var modal = document.getElementById('myModal');
             var closeModal = document.getElementsByClassName('close')[0];
 
-            // Close the modal when the user clicks on <span> (x)
             closeModal.onclick = function() {{
                 modal.style.display = "none";
             }}
 
-            // Close the modal when the user clicks outside of it
             window.onclick = function(event) {{
                 if (event.target == modal) {{
                     modal.style.display = "none";
@@ -95,7 +173,6 @@ def fullcalendar(events):
               initialView: 'dayGridMonth',
               events: {events_json},
               eventClick: function(info) {{
-                // Populate modal with all event details
                 document.getElementById('modal-title').innerText = info.event.title;
                 document.getElementById('modal-date').innerText = info.event.start.toLocaleDateString();
                 document.getElementById('modal-time').innerText = info.event.extendedProps.time || 'N/A';
@@ -108,9 +185,20 @@ def fullcalendar(events):
                 document.getElementById('modal-prize').innerText = info.event.extendedProps.prize || 'N/A';
                 document.getElementById('modal-contact').innerText = info.event.extendedProps.contact_number || 'N/A';
 
-                // Display the modal
                 modal.style.display = "block";
-              }}
+              }},
+              headerToolbar: {{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,weekGrid,dayGrid'
+              }},
+              buttonText: {{
+                today: 'today',
+                month: 'month',
+                week: 'week',
+                day: 'day'
+              }},
+              themeSystem: 'standard'
             }});
             calendar.render();
           }});
