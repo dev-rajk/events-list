@@ -197,7 +197,7 @@ elif choice == "Submit Event":
         submit_button = st.form_submit_button(label='Submit Event')
         
         if submit_button:
-            add_event(Title, Date, TIme, Category, Venue, location, Organizer, Genre, QM, Prize, Contact)
+            add_event(Title, Date, Time, Category, Venue, location, Organizer, Genre, QM, Prize, Contact)
             st.success(f"Event '{quiz_name}' submitted successfully! Awaiting admin approval.")
 
 
@@ -267,7 +267,7 @@ elif choice == "Admin Panel":
     
                     if submit_button:
                         # Update event in the database
-                        update_event(selected_event_id, Title, Date, TIme, Category, Venue, location, Organizer, Genre, QM, Prize, Contact)
+                        update_event(selected_event_id, Title, Date, Time, Category, Venue, location, Organizer, Genre, QM, Prize, Contact)
                         st.success(f"Event ID {selected_event_id} updated successfully!")
     
                     if delete_button:
