@@ -214,7 +214,7 @@ elif choice == "Admin Panel":
             df = pd.DataFrame(pending_events, columns= columns)
             st.dataframe(df.drop(columns=["status"]))
                 
-            selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
+            selected_event_id = st.selectbox("Select an Event to Approve", df["id"])
             if st.button("Approve Event"):
                 approve_event(selected_event_id)
                 st.success(f"Event ID {selected_event_id} approved!")
@@ -241,8 +241,8 @@ elif choice == "Admin Panel":
                 st.dataframe(df.drop(columns=["status"]))
     
                 # Select event for editing or deleting
-                selected_event_id = st.selectbox("Select an Event to Edit or Delete", df["ID"])
-                selected_event = df[df["ID"] == selected_event_id].iloc[0]  # Get selected event details
+                selected_event_id = st.selectbox("Select an Event to Edit or Delete", df["id"])
+                selected_event = df[df["id"] == selected_event_id].iloc[0]  # Get selected event details
     
                 # Editing form with existing values pre-filled
                 with st.form(key='edit_event_form'):
@@ -293,7 +293,7 @@ elif choice == "Admin Panel":
                 
                 st.dataframe(df_pending.drop(columns=["status"]))
     
-                selected_event_id_pending = st.selectbox("Select an Event to Approve", df_pending["ID"])
+                selected_event_id_pending = st.selectbox("Select an Event to Approve", df_pending["id"])
                 if st.button("Approve Event"):
                     approve_event(selected_event_id_pending)
                     st.success(f"Event ID {selected_event_id_pending} approved!")
