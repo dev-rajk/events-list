@@ -155,18 +155,18 @@ if choice == "View Events":
         events = []
         for event in approved_events:
             events.append({
-            "title": event[1],  # Quiz Name
-            "start": event[2],  # Date
+            "title": event['quiz_name'],  # Quiz Name
+            "start": event['date'],  # Date
             "extendedProps": {  # Additional event details
-            "time": event[3], 
-                        "category": event[4],  # Venue (renamed from place)
-                        "venue": event[5],
-                        "location":   event[6], # Location
-                        "organizer": event[7],                    
-                        "genre": event[8],
-                        "quiz_master": event[9],  # Quiz Master
-                        "prize": event[10],
-                        "contact_number": event[11]  # Contact Number
+            "time": event['time'], 
+                        "category": event['category'],  # Venue (renamed from place)
+                        "venue": event['venue'],
+                        "location":   event['location'], # Location
+                        "organizer": event['organiser'],                    
+                        "genre": event['genre'],
+                        "quiz_master": event['quiz_master'],  # Quiz Master
+                        "prize": event['prize'],
+                        "contact_number": event['contact_number']  # Contact Number
                     }
                 })
             
