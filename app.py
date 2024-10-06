@@ -162,7 +162,7 @@ if choice == "View Events":
                         "category": event['category'],  # Venue (renamed from place)
                         "venue": event['venue'],
                         "location":   event['location'], # Location
-                        "organizer": event['organiser'],                    
+                        "organizer": event['organizer'],                    
                         "genre": event['genre'],
                         "quiz_master": event['quiz_master'],  # Quiz Master
                         "prize": event['prize'],
