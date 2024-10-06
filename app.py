@@ -212,7 +212,7 @@ elif choice == "Admin Panel":
         if  pending_events:
             columns = list(pending_events[0].keys())
             df = pd.DataFrame(pending_events, columns= columns)
-            st.dataframe(df.drop(columns=["Status"]))
+            st.dataframe(df.drop(columns=["status"]))
                 
             selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
             if st.button("Approve Event"):
@@ -238,7 +238,7 @@ elif choice == "Admin Panel":
                 df = pd.DataFrame(approved_events, columns=columns)
     
                 # Display approved events
-                st.dataframe(df.drop(columns=["Status"]))
+                st.dataframe(df.drop(columns=["status"]))
     
                 # Select event for editing or deleting
                 selected_event_id = st.selectbox("Select an Event to Edit or Delete", df["ID"])
@@ -291,7 +291,7 @@ elif choice == "Admin Panel":
                 columns = list(pending_events[0].keys())
                 df_pending = pd.DataFrame(pending_events, columns=columns)
                 
-                st.dataframe(df_pending.drop(columns=["Status"]))
+                st.dataframe(df_pending.drop(columns=["status"]))
     
                 selected_event_id_pending = st.selectbox("Select an Event to Approve", df_pending["ID"])
                 if st.button("Approve Event"):
