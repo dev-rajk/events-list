@@ -198,7 +198,7 @@ elif choice == "Submit Event":
         
         if submit_button:
             add_event(Title, Date, Time, Category, Venue, Location, Organizer, Genre, QM, Prize, Contact)
-            st.success(f"Event '{quiz_name}' submitted successfully! Awaiting admin approval.")
+            st.success(f"Event '{Title}' submitted successfully! Awaiting admin approval.")
 
 
 # 3. Admin Panel for Approving, Editing, Deleting, and Exporting Events
