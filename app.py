@@ -246,17 +246,17 @@ elif choice == "Admin Panel":
     
                 # Editing form with existing values pre-filled
                 with st.form(key='edit_event_form'):
-                    Title = st.text_input("Quiz Name", value=selected_event["Title"])
-                    Date = st.date_input("Date", value=pd.to_datetime(selected_event["Date"]))
-                    Time = st.text_input("Time", value=selected_event["Time"])
-                    Category = st.text_input("Category", value=selected_event["Category"])
-                    Venue = st.text_input("Venue", value=selected_event["Venue"])
-                    Location = st.text_input("Location", value=selected_event["Location"])
-                    Organizer = st.text_input("Organizer", value=selected_event["Organizer"])
-                    Genre = st.text_input("Genre", value=selected_event["Genre"])
-                    QM = st.text_input("Quiz Master", value=selected_event["QM"])
-                    Prize = st.text_input("Prize", value=selected_event["Prize"])
-                    Contact = st.text_input("Contact Number", value=selected_event["Contact"])
+                    Title = st.text_input("Quiz Name", value=selected_event["quiz_name"])
+                    Date = st.date_input("Date", value=pd.to_datetime(selected_event["date"]))
+                    Time = st.text_input("Time", value=selected_event["time"])
+                    Category = st.text_input("Category", value=selected_event["category"])
+                    Venue = st.text_input("Venue", value=selected_event["venue"])
+                    Location = st.text_input("Location", value=selected_event["location"])
+                    Organizer = st.text_input("Organizer", value=selected_event["organizer"])
+                    Genre = st.text_input("Genre", value=selected_event["genre"])
+                    QM = st.text_input("Quiz Master", value=selected_event["quiz_master"])
+                    Prize = st.text_input("Prize", value=selected_event["prize"])
+                    Contact = st.text_input("Contact Number", value=selected_event["contact_number"])
     
                     submit_button = st.form_submit_button(label='Update Event')
                     delete_button = st.form_submit_button(label='Delete Event')
