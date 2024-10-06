@@ -210,10 +210,8 @@ elif choice == "Admin Panel":
         pending_events = get_events("Pending")
         
         if  pending_events:
-            df = pd.DataFrame(pending_events, columns=[
-                    "ID", "Title", "Date", "Time", "Category", "Place", "Location", "Organizer", 
-                    "Genre", "QM", "Prize", "Contact", "Status"
-                ])
+            columns = list(pending_events[0].keys())
+            df = pd.DataFrame(pending_events, columns= columns)
             st.dataframe(df.drop(columns=["Status"]))
                 
             selected_event_id = st.selectbox("Select an Event to Approve", df["ID"])
@@ -236,10 +234,8 @@ elif choice == "Admin Panel":
             st.write("Manage Approved Events")
             
             if  approved_events:
-                df = pd.DataFrame(approved_events, columns=[
-                    "ID", "Title", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
-                    "Genre", "QM", "Prize", "Contact", "Status"
-                ])
+                columns = list(approved_events[0].keys())
+                df = pd.DataFrame(approved_events, columns=columns)
     
                 # Display approved events
                 st.dataframe(df.drop(columns=["Status"]))
@@ -292,10 +288,8 @@ elif choice == "Admin Panel":
             st.write("Approve Pending Events")
     
             if  pending_events:
-                df_pending = pd.DataFrame(pending_events, columns=[
-                    "ID", "Title", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
-                    "Genre", "QM", "Prize", "Contact", "Status"
-                ])
+                columns = list(pending_events[0].keys())
+                df_pending = pd.DataFrame(pending_events, columns=columns)
                 
                 st.dataframe(df_pending.drop(columns=["Status"]))
     
