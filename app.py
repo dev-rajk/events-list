@@ -33,94 +33,48 @@ def fullcalendar(events):
         <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css' rel='stylesheet' />
         <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js'></script>
         <style>
-            /* Default light theme */
+            /* Dark theme styles */
             body {{
-                background-color: #fff;
-                color: #000;
+                background-color: #1c1c1c;
+                color: white;
             }}
             #calendar {{
-                background-color: #fff;
-                border: 1px solid #ccc;
+                background-color: #1c1c1c;
+                border: 1px solid #333;
             }}
             .fc-header-toolbar {{
-                background-color: #f8f9fa;
-                border-bottom: 1px solid #dee2e6;
+                background-color: #2c2c2c;
+                border-bottom: 1px solid #444;
             }}
             .fc-button {{
-                background-color: #007bff;
+                background-color: #d9534f;
                 color: white;
                 border: none;
                 padding: 5px 10px;
             }}
             .fc-button:hover {{
-                background-color: #0056b3;
+                background-color: #c9302c;
             }}
             .fc-button.fc-button-primary {{
-                background-color: #6c757d;
+                background-color: #292b2c;
             }}
             .fc-button-primary:hover {{
-                background-color: #5a6268;
+                background-color: #1c1d1f;
             }}
             .fc-daygrid-day {{
-                background-color: #fff;
-                border: 1px solid #dee2e6;
-                color: #000;
+                background-color: #2c2c2c;
+                border: 1px solid #333;
+                color: white;
             }}
             .fc-day-today {{
-                background-color: #e9ecef !important;
-                border-color: #adb5bd;
+                background-color: #454545 !important;
+                border-color: #292929;
             }}
             .fc-col-header-cell {{
-                background-color: #f1f3f5;
-                color: #212529;
-                border: 1px solid #dee2e6;
+                background-color: #333;
+                color: white;
+                border: 1px solid #333;
             }}
-
-            /* Dark theme */
-            @media (prefers-color-scheme: dark) {{
-                body {{
-                    background-color: #1c1c1c;
-                    color: white;
-                }}
-                #calendar {{
-                    background-color: #1c1c1c;
-                    border: 1px solid #333;
-                }}
-                .fc-header-toolbar {{
-                    background-color: #2c2c2c;
-                    border-bottom: 1px solid #444;
-                }}
-                .fc-button {{
-                    background-color: #d9534f;
-                    color: white;
-                    border: none;
-                    padding: 5px 10px;
-                }}
-                .fc-button:hover {{
-                    background-color: #c9302c;
-                }}
-                .fc-button.fc-button-primary {{
-                    background-color: #292b2c;
-                }}
-                .fc-button-primary:hover {{
-                    background-color: #1c1d1f;
-                }}
-                .fc-daygrid-day {{
-                    background-color: #2c2c2c;
-                    border: 1px solid #333;
-                    color: white;
-                }}
-                .fc-day-today {{
-                    background-color: #454545 !important;
-                    border-color: #292929;
-                }}
-                .fc-col-header-cell {{
-                    background-color: #333;
-                    color: white;
-                    border: 1px solid #333;
-                }}
-            }}
-
             .modal {{
                 display: none;
                 position: fixed;
