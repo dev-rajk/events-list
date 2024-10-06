@@ -182,22 +182,22 @@ elif choice == "Submit Event":
     st.subheader("Submit a New Quiz Event")
     
     with st.form(key='event_form'):
-        quiz_name = st.text_input("Quiz Name")
-        date = st.date_input("Date")
-        time = st.text_input("Time")
-        category = st.text_input("Category")
-        venue = st.text_input("Venue")  # Changed from place to venue
-        location = st.text_input("Location")
-        organizer = st.text_input("Organizer")
-        genre = st.text_input("Genre")
-        quiz_master = st.text_input("Quiz Master")
-        prize = st.text_input("Prize")
-        contact_number = st.text_input("Contact Number")
+        Title = st.text_input("Quiz Name")
+        Date = st.date_input("Date")
+        Time = st.text_input("Time")
+        Category = st.text_input("Category")
+        Venue = st.text_input("Venue")  # Changed from place to venue
+        Location = st.text_input("Location")
+        Organizer = st.text_input("Organizer")
+        Genre = st.text_input("Genre")
+        QM = st.text_input("Quiz Master")
+        Prize = st.text_input("Prize")
+        Contact = st.text_input("Contact Number")
         
         submit_button = st.form_submit_button(label='Submit Event')
         
         if submit_button:
-            add_event(quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number)
+            add_event(Title, Date, TIme, Category, Venue, location, Organizer, Genre, QM, Prize, Contact)
             st.success(f"Event '{quiz_name}' submitted successfully! Awaiting admin approval.")
 
 
@@ -211,8 +211,8 @@ elif choice == "Admin Panel":
         
         if not pending_events.empty:
             df = pd.DataFrame(pending_events, columns=[
-                    "ID", "Quiz Name", "Date", "Time", "Category", "Place", "Location", "Organizer", 
-                    "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
+                    "ID", "Title", "Date", "Time", "Category", "Place", "Location", "Organizer", 
+                    "Genre", "QM", "Prize", "Contact", "Status"
                 ])
             st.dataframe(df.drop(columns=["Status"]))
                 
@@ -237,8 +237,8 @@ elif choice == "Admin Panel":
             
             if not approved_events.empty:
                 df = pd.DataFrame(approved_events, columns=[
-                    "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
-                    "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
+                    "ID", "Title", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
+                    "Genre", "QM", "Prize", "Contact", "Status"
                 ])
     
                 # Display approved events
@@ -250,24 +250,24 @@ elif choice == "Admin Panel":
     
                 # Editing form with existing values pre-filled
                 with st.form(key='edit_event_form'):
-                    quiz_name = st.text_input("Quiz Name", value=selected_event["Quiz Name"])
-                    date = st.date_input("Date", value=pd.to_datetime(selected_event["Date"]))
-                    time = st.text_input("Time", value=selected_event["Time"])
-                    category = st.text_input("Category", value=selected_event["Category"])
-                    venue = st.text_input("Venue", value=selected_event["Venue"])
-                    location = st.text_input("Location", value=selected_event["Location"])
-                    organizer = st.text_input("Organizer", value=selected_event["Organizer"])
-                    genre = st.text_input("Genre", value=selected_event["Genre"])
-                    quiz_master = st.text_input("Quiz Master", value=selected_event["Quiz Master"])
-                    prize = st.text_input("Prize", value=selected_event["Prize"])
-                    contact_number = st.text_input("Contact Number", value=selected_event["Contact Number"])
+                    Title = st.text_input("Quiz Name", value=selected_event["Title"])
+                    Date = st.date_input("Date", value=pd.to_datetime(selected_event["Date"]))
+                    Time = st.text_input("Time", value=selected_event["Time"])
+                    Category = st.text_input("Category", value=selected_event["Category"])
+                    Venue = st.text_input("Venue", value=selected_event["Venue"])
+                    Location = st.text_input("Location", value=selected_event["Location"])
+                    Organizer = st.text_input("Organizer", value=selected_event["Organizer"])
+                    Genre = st.text_input("Genre", value=selected_event["Genre"])
+                    QM = st.text_input("Quiz Master", value=selected_event["QM"])
+                    Prize = st.text_input("Prize", value=selected_event["Prize"])
+                    Contact = st.text_input("Contact Number", value=selected_event["Contact"])
     
                     submit_button = st.form_submit_button(label='Update Event')
                     delete_button = st.form_submit_button(label='Delete Event')
     
                     if submit_button:
                         # Update event in the database
-                        update_event(selected_event_id, quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number)
+                        update_event(selected_event_id, Title, Date, TIme, Category, Venue, location, Organizer, Genre, QM, Prize, Contact)
                         st.success(f"Event ID {selected_event_id} updated successfully!")
     
                     if delete_button:
@@ -293,8 +293,8 @@ elif choice == "Admin Panel":
     
             if not pending_events.empty:
                 df_pending = pd.DataFrame(pending_events, columns=[
-                    "ID", "Quiz Name", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
-                    "Genre", "Quiz Master", "Prize", "Contact Number", "Status"
+                    "ID", "Title", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
+                    "Genre", "QM", "Prize", "Contact", "Status"
                 ])
                 
                 st.dataframe(df_pending.drop(columns=["Status"]))
