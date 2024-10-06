@@ -150,7 +150,7 @@ if choice == "View Events":
     st.subheader("Upcoming Quizzes")
     approved_events = get_events("Approved")
     
-    if not approved_events.empty:
+    if approved_events:
         # Prepare events for FullCalendar
         events = []
         for event in approved_events:
@@ -209,7 +209,7 @@ elif choice == "Admin Panel":
     if password == BASIC_ADMIN_PASSWORD:
         pending_events = get_events("Pending")
         
-        if not pending_events.empty:
+        if  pending_events:
             df = pd.DataFrame(pending_events, columns=[
                     "ID", "Title", "Date", "Time", "Category", "Place", "Location", "Organizer", 
                     "Genre", "QM", "Prize", "Contact", "Status"
@@ -235,7 +235,7 @@ elif choice == "Admin Panel":
         with tab1:  # Manage Approved Events Tab
             st.write("Manage Approved Events")
             
-            if not approved_events.empty:
+            if  approved_events:
                 df = pd.DataFrame(approved_events, columns=[
                     "ID", "Title", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
                     "Genre", "QM", "Prize", "Contact", "Status"
@@ -291,7 +291,7 @@ elif choice == "Admin Panel":
         with tab2:  # Approve Pending Events Tab
             st.write("Approve Pending Events")
     
-            if not pending_events.empty:
+            if  pending_events:
                 df_pending = pd.DataFrame(pending_events, columns=[
                     "ID", "Title", "Date", "Time", "Category", "Venue", "Location", "Organizer", 
                     "Genre", "QM", "Prize", "Contact", "Status"
