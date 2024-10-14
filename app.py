@@ -154,7 +154,7 @@ def fullcalendar(events, theme_mode):
                 document.getElementById('modal-genre').innerText = info.event.extendedProps.genre || 'N/A';
                 document.getElementById('modal-prize').innerText = info.event.extendedProps.prize || 'N/A';
                 document.getElementById('modal-contact').innerText = info.event.extendedProps.contact_number || 'N/A';
-                document.getElementById('modal-registration_link').innerText = info.event.extendedProps.registration_link || 'N/A';
+                document.getElementById('modal-registration_link').innerHTML = info.event.extendedProps.registration_link || 'N/A';
                 document.getElementById('modal-other_details').innerText = info.event.extendedProps.other_details || 'N/A';
 
                 // Display the modal
