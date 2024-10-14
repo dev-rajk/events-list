@@ -217,7 +217,7 @@ if choice == "View Events":
                         "quiz_master": event['quiz_master'],  # Quiz Master
                         "prize": event['prize'],
                         "contact_number": event['contact_number'],  # Contact Number
-                        "registration_link": f'<a href="{event["registration_link"] }" target="_blank" rel="noopener noreferrer">Click here to register</a>',
+                        "registration_link": f'<a href="{event["registration_link"] }" target="_blank" rel="external">Click here to register</a>',
                         "other_details": event['other_details']
                     }
                 })
