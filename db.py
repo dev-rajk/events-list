@@ -23,7 +23,7 @@ if not firebase_admin._apps:  # Check if the app is already initialized
 db = firestore.client()
 
 # Firestore operations
-def add_event(quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number):
+def add_event(quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number, registration_link, other_details):
     doc_ref = db.collection('events').document()
     doc_ref.set({
         'quiz_name': quiz_name,
@@ -37,6 +37,8 @@ def add_event(quiz_name, date, time, category, venue, location, organizer, genre
         'quiz_master': quiz_master,
         'prize': prize,
         'contact_number': contact_number,
+        'registration_link': str(registration_link),
+        'other_details': other_details,
         'status': 'Pending'
     })
 
@@ -56,7 +58,11 @@ def approve_event(event_id):
     doc_ref = db.collection('events').document(event_id)
     doc_ref.update({'status': 'Approved'})
 
-def update_event(event_id, quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number):
+def decline_event(event_id):
+    doc_ref = db.collection('events').document(event_id)
+    doc_ref.update({'status': 'Declined'})
+
+def update_event(event_id, quiz_name, date, time, category, venue, location, organizer, genre, quiz_master, prize, contact_number, registration_link, other_details):
     doc_ref = db.collection('events').document(event_id)
     doc_ref.update({
         'quiz_name': quiz_name,
@@ -69,7 +75,10 @@ def update_event(event_id, quiz_name, date, time, category, venue, location, org
         'genre': genre,
         'quiz_master': quiz_master,
         'prize': prize,
-        'contact_number': contact_number
+        'contact_number': contact_number,
+        'registration_link': str(registration_link),
+        'other_details': other_details,
+        'status': 'Pending'
     })
 
 def delete_event(event_id):
