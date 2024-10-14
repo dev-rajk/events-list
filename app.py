@@ -10,12 +10,13 @@ st.set_page_config(
     menu_items={
         'about': '''**This was made with love in Assam**        
         The calendar attempts to help organisers and participants know more about the quizzing events across the state. 
-        For feature requests or bug reports contact @dev_rajk on Instagram
+        
         '''}
     )
 
 
 st.title("Assam Quiz Calendar")
+st.write('Select in sidebar to view quizzes or submit events')
 
 BASIC_ADMIN_PASSWORD = st.secrets.user.pass1
 FULL_ADMIN_PASSWORD = st.secrets.user.pass2
@@ -239,11 +240,11 @@ if choice == "View Events":
     else:
         st.write("No approved events to show.")
         st.write('''
-                This website is free of cost for all users. \n
+                :red[<em>This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation.  \n
                 Users are encouraged to verify all event information. \n
                 No personal infomation is tracked. \n
-                Cheers to quizzing. \n
+                Cheers to quizzing.</em>] \n
                   ''')
 
 
