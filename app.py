@@ -225,7 +225,7 @@ if choice == "View Events":
         theme_mode = st.get_option('theme.base')  # 'light' or 'dark'
 
         # Display FullCalendar with modal functionality based on the global theme
-        st.components.v1.html(fullcalendar(events, theme_mode=theme_mode), height=800)
+        st.components.v1.html(fullcalendar(events, theme_mode=theme_mode), height=1000)
 
         st.write('''
                 This website is free of cost for all users. \n
