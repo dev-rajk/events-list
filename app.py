@@ -15,7 +15,7 @@ st.set_page_config(
     )
 
 
-st.title("Assam Quiz Calendar")
+st.title("Assam Quiz Calendar :calendar: ")
 st.write('Select in sidebar to view quizzes or submit events')
 
 BASIC_ADMIN_PASSWORD = st.secrets.user.pass1
@@ -228,7 +228,7 @@ if choice == "View Events":
         # Display FullCalendar with modal functionality based on the global theme
         st.components.v1.html(fullcalendar(events, theme_mode=theme_mode), height=800)
 
-        st.markdown('''
+        st.write('''
                 :red[ **This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation. \n
                 Users are encouraged to verify all event information. \n
@@ -239,7 +239,7 @@ if choice == "View Events":
             
     else:
         st.write("No approved events to show.")
-        st.markdown('''
+        st.write('''
                 :red[ **This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation.  \n
                 Users are encouraged to verify all event information. \n
