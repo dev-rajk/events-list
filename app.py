@@ -228,23 +228,23 @@ if choice == "View Events":
         # Display FullCalendar with modal functionality based on the global theme
         st.components.v1.html(fullcalendar(events, theme_mode=theme_mode), height=800)
 
-        st.write('''
-                :red[This website is free of cost for all users. \n
+        st.markdown('''
+                :red[<em>This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation. \n
                 Users are encouraged to verify all event information. \n
                 No personal infomation is tracked. \n
-                Cheers to quizzing.] \n
+                Cheers to quizzing.</em>] \n
                   ''')
 
             
     else:
         st.write("No approved events to show.")
-        st.write('''
-                :red[This website is free of cost for all users. \n
+        st.markdown('''
+                :red[<em>This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation.  \n
                 Users are encouraged to verify all event information. \n
                 No personal infomation is tracked. \n
-                Cheers to quizzing.] \n
+                Cheers to quizzing.</em>] \n
                   ''')
 
 
@@ -279,12 +279,12 @@ elif choice == "Submit Event":
                 st.success(f"Event '{Title}' submitted successfully! Awaiting admin approval.")
             
 
-    st.write('''
-                :red[This website is free of cost for all users. \n
+    st.markdown('''
+                :red[<em>This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation.  \n
                 Users are encouraged to verify all event information. \n
                 No personal infomation is tracked. \n
-                Cheers to quizzing.] \n
+                Cheers to quizzing.</em>] \n
                   ''')
 
 
@@ -353,7 +353,7 @@ elif choice == "Admin Panel":
                     )
     
             else:
-                st.write("No approved events to manage.")
+                st.markdown("No approved events to manage. :smiley: :smiley: :smiley:")
     
         with tab2:  # Approve Pending Events Tab
             st.write("Approve Pending Events")
@@ -372,7 +372,7 @@ elif choice == "Admin Panel":
                     decline_event(selected_event_id_pending)
                     st.success(f"Event ID {selected_event_id_pending} Declined!")
             else:
-                st.write("No pending events to approve.")
+                st.markdown("No pending events to approve. :smiley: :smiley: :smiley:")
         with tab3:  # Manage Approved Events Tab
             st.write("Manage Declined Events")
             
