@@ -185,7 +185,7 @@ def fullcalendar(events, theme_mode):
             <p><strong>Genre:</strong> <span id="modal-genre"></span></p>
             <p><strong>Prize:</strong> <span id="modal-prize"></span></p>
             <p><strong>Contact Number:</strong> <span id="modal-contact"></span></p>
-            <p><strong>Registration Link (copy to another tab):</strong> <span id="modal-registration_link"></span></p>
+            <p><strong>Registration Link (External link! Copy to another tab):</strong> <span id="modal-registration_link"></span></p>
             <p><strong>Other Details:</strong> <span id="modal-other_details"></span></p>
           </div>
         </div>
@@ -217,7 +217,7 @@ if choice == "View Events":
                         "quiz_master": event['quiz_master'],  # Quiz Master
                         "prize": event['prize'],
                         "contact_number": event['contact_number'],  # Contact Number
-                        "registration_link": event['registration_link'],
+                        "registration_link": f'<a href="{event["registration_link"]}" target="_blank">Click here to register</a>',
                         "other_details": event['other_details']
                     }
                 })
