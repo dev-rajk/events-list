@@ -305,8 +305,8 @@ elif choice == "Admin Panel":
             st.write("Manage Approved Events")
             
             if  approved_events:
-                columns = list(approved_events[0].keys())
-                df = pd.DataFrame(approved_events, columns=columns)
+                
+                df = pd.DataFrame(approved_events, columns= ['id', 'quiz_name', 'date', 'time', 'category', 'venue', 'location', 'organizer', 'genre', 'quiz_master', 'prize', 'contact_number', 'registration_link', 'other_details', 'status' ])
     
                 # Display approved events
                 st.dataframe(df.drop(columns=["status"]))
@@ -358,8 +358,8 @@ elif choice == "Admin Panel":
             st.write("Approve Pending Events")
     
             if  pending_events:
-                columns = list(pending_events[0].keys())
-                df_pending = pd.DataFrame(pending_events, columns=columns)
+                
+                df_pending = pd.DataFrame(pending_events, columns= ['id', 'quiz_name', 'date', 'time', 'category', 'venue', 'location', 'organizer', 'genre', 'quiz_master', 'prize', 'contact_number', 'registration_link', 'other_details', 'status' ])
                 
                 st.dataframe(df_pending.drop(columns=["status"]))
     
@@ -376,8 +376,8 @@ elif choice == "Admin Panel":
             st.write("Manage Declined Events")
             
             if  declined_events:
-                columns = list(declined_events[0].keys())
-                df = pd.DataFrame(declined_events, columns=columns)
+                
+                df = pd.DataFrame(declined_events, columns= ['id', 'quiz_name', 'date', 'time', 'category', 'venue', 'location', 'organizer', 'genre', 'quiz_master', 'prize', 'contact_number', 'registration_link', 'other_details', 'status' ])
     
                 # Display approved events
                 st.dataframe(df.drop(columns=["status"]))
@@ -425,8 +425,8 @@ elif choice == "Admin Panel":
             st.write("Manage Approved Events")
             
             if  approved_events:
-                columns = list(approved_events[0].keys())
-                df = pd.DataFrame(approved_events, columns=columns)
+                
+                df = pd.DataFrame(approved_events, columns= ['id', 'quiz_name', 'date', 'time', 'category', 'venue', 'location', 'organizer', 'genre', 'quiz_master', 'prize', 'contact_number', 'registration_link', 'other_details', 'status' ])
     
                 # Display approved events
                 st.dataframe(df.drop(columns=["status"]))
@@ -483,8 +483,8 @@ elif choice == "Admin Panel":
             st.write("Approve Pending Events")
     
             if  pending_events:
-                columns = list(pending_events[0].keys())
-                df_pending = pd.DataFrame(pending_events, columns=columns)
+                
+                df_pending = pd.DataFrame(pending_events, columns= ['id', 'quiz_name', 'date', 'time', 'category', 'venue', 'location', 'organizer', 'genre', 'quiz_master', 'prize', 'contact_number', 'registration_link', 'other_details', 'status' ])
                 
                 st.dataframe(df_pending.drop(columns=["status"]))
     
@@ -501,8 +501,8 @@ elif choice == "Admin Panel":
             st.write("Manage Declined Events")
             
             if  declined_events:
-                columns = list(declined_events[0].keys())
-                df = pd.DataFrame(declined_events, columns=columns)
+                
+                df = pd.DataFrame(declined_events, columns= ['id', 'quiz_name', 'date', 'time', 'category', 'venue', 'location', 'organizer', 'genre', 'quiz_master', 'prize', 'contact_number', 'registration_link', 'other_details', 'status' ])
     
                 # Display approved events
                 st.dataframe(df.drop(columns=["status"]))
