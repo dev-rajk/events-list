@@ -229,22 +229,22 @@ if choice == "View Events":
         st.components.v1.html(fullcalendar(events, theme_mode=theme_mode), height=800)
 
         st.markdown('''
-                :red[<em>This website is free of cost for all users. \n
+                :red[ **This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation. \n
                 Users are encouraged to verify all event information. \n
                 No personal infomation is tracked. \n
-                Cheers to quizzing.</em>] \n
+                Cheers to quizzing.** ] \n
                   ''')
 
             
     else:
         st.write("No approved events to show.")
         st.markdown('''
-                :red[<em>This website is free of cost for all users. \n
+                :red[ **This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation.  \n
                 Users are encouraged to verify all event information. \n
                 No personal infomation is tracked. \n
-                Cheers to quizzing.</em>] \n
+                Cheers to quizzing.** ] \n
                   ''')
 
 
@@ -280,11 +280,11 @@ elif choice == "Submit Event":
             
 
     st.markdown('''
-                :red[<em>This website is free of cost for all users. \n
+                :red[ **This website is free of cost for all users. \n
                 The maintainers bear no responsibility for the accuracy of the event information, or any loss or damages resulting from the use of this site. The maintainer is not liable for any damages or misinformation.  \n
                 Users are encouraged to verify all event information. \n
                 No personal infomation is tracked. \n
-                Cheers to quizzing.</em>] \n
+                Cheers to quizzing.** ] \n
                   ''')
 
 
